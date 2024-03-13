@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .visib {
+            visibility: visible;
+        }
+    </style>
 </head>
 <body>
     <input id="from" type="text">
@@ -57,6 +62,14 @@
 // - добавить два класса: animate_animated и animate_fadeInLeftBig
 // - поставить данному элементу стиль visibility в значение 'visible'.
 
+    const messageBtn = document.querySelector('button.messageBtn');
+    const message = document.querySelector('div.message');
+    messageBtn.addEventListener('click', function (e) {
+        message.classList.add('animate_animated');
+        message.classList.add('animate_fadeInLeftBig');
+        message.style.visibility = 'visible';
+    });
+    
 // 3. Необходимо при отправке формы проверить, заполнены ли все поля в этой форме.
 //  Если какое-либо поле не заполнено, форма не должна отправляться, 
 //  также должны быть подсвечены незаполненные поля 
