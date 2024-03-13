@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .error { 
+            background-color: rgb(227, 126, 126);
+        }
+    </style>
 </head>
 <body>
     <input id="from" type="text">
@@ -19,23 +24,23 @@
     <br>
 
     <form>
-    <label>
-        Первый инпут:
-        <input class="form-control" type="text">
-    </label>
-    <br>
-    <br>
-    <label>
-        Второй инпут:
-        <select class="form-control">
-        <option value=""></option>
-        <option value="1">Один</option>
-        <option value="2">Два</option>
-        </select>
-    </label>
-    <br>
-    <br>
-    <button>Отправить</button>
+        <label>
+            Первый инпут:
+            <input class="form-control" type="text">
+        </label>
+        <br>
+        <br>
+        <label>
+            Второй инпут:
+            <select class="form-control">
+            <option value=""></option>
+            <option value="1">Один</option>
+            <option value="2">Два</option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <button>Отправить</button>
     </form>
 
     <script>
@@ -46,11 +51,24 @@
 // отображаться в span. То есть при печати в input'е тег span 
 // также должен меняться.
 
+    const inputFrom = document.querySelector('input#from');
+    const span = document.querySelector('span');
 
+    inputFrom.addEventListener('change', function (e) {
+        span.textContent = e.target.value;
+    });
 
 //  2. При клике на кнопку с классом messageBtn необходимо элементу с классом message:
 // - добавить два класса: animate_animated и animate_fadeInLeftBig
 // - поставить данному элементу стиль visibility в значение 'visible'.
+
+    const messageBtn = document.querySelector('button.messageBtn');
+    const message = document.querySelector('div.message');
+    messageBtn.addEventListener('click', function (e) {
+        message.classList.add('animate_animated');
+        message.classList.add('animate_fadeInLeftBig');
+        message.style.visibility = 'visible';
+    });
 
 // 3. Необходимо при отправке формы проверить, заполнены ли все поля в этой форме.
 //  Если какое-либо поле не заполнено, форма не должна отправляться, 
@@ -60,6 +78,22 @@
 //  при вводе в данное поле, произвести проверку:
 // - Если поле пустое, необходимо данное поле подсветить (поставить класс error данному полю).
 // - Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
-//     </script>
+    const formCtrl = document.querySelectorAll('.form-control');
+    const formBtn = document.querySelector('form button');
+
+    formBtn.addEventListener('click', function (e) {
+        for (let i = 0; i < formCtrl.length; i++)
+        {
+            if (formCtrl[i].value === '') {
+                formCtrl[i].classList.add('error');
+                e.preventDefault();
+            } else {
+                formCtrl[i].classList.remove('error');
+            }     
+        };
+    });
+    
+
+     </script>
 </body>
 </html>
